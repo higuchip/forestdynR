@@ -1,0 +1,63 @@
+#' @title create_dyn_df
+#'
+#' @description Creates a dynamic data frame by combining a list of data and rounding numeric values to a specified number of digits.
+#' This function takes a list of data, rounds the numeric values, and combines them into a single data frame with custom column names.
+#'
+#' @param data_list A list of data frames or vectors to be combined into a single data frame.
+#' @param col_names A character vector of column names to assign to the resulting data frame.
+#' @param round_digits Numeric. The number of decimal places to round numeric values in the data to.
+#'
+#' @return A data frame with the combined data and rounded numeric values.
+#'
+#' @examples
+#' \dontrun{
+#' create_dyn_df(data_list = list(data1, data2), col_names = c("Column1", "Column2"), round_digits = 2)
+#' }
+#'
+#' @export
+
+
+create_dyn_df <- function(data_list, col_names, round_digits) {
+  # Verificar se data_list é uma lista
+  if (!is.list(data_list)) {
+    stop("data_list must be a list.")
+  }
+
+  # Verificar se col_names é um vetor de caracteres
+  if (!is.character(col_names)) {
+    stop("col_names must be a character vector.")
+  }
+
+  # Verificar se round_digits é um número
+  if (!is.numeric(round_digits) || length(round_digits) != 1) {
+    stop("round_digits must be a single numeric value.")
+  }
+
+  # Garantir que o número de colunas em col_names seja igual ao número de colunas após cbind
+  num_cols <- sum(sapply(data_list, function(x) if (is.vector(x)) length(x) else ncol(x)))
+  if (length(col_names) != num_cols) {
+    stop("Number of columns in col_names does not match the combined data.")
+  }
+
+  # Processar e arredondar os dados
+  rounded_data <- lapply(data_list, function(x) {
+    if (is.data.frame(x)) {
+      x[] <- lapply(x, function(col) {
+        if (is.numeric(col)) {
+          return(round(col, round_digits))
+        } else {
+          return(col)
+        }
+      })
+    } else if (is.numeric(x)) {
+      x <- round(x, round_digits)
+    }
+    return(x)
+  })
+
+  # Combinar os dados em um único data frame
+  df <- do.call(cbind, rounded_data)
+  colnames(df) <- col_names
+
+  return(df)
+}

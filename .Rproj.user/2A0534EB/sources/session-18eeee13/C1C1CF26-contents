@@ -1,0 +1,22 @@
+library(roxygen2) # In-Line Documentation for R 
+library(devtools) # Tools to Make Developing R Packages Easier
+library(testthat) # Unit Testing for R
+library(usethis)  # Automate Package and Project Setup
+
+
+library(forestdynR)
+forest_df <- read.csv2("data/forest_df_example.csv")
+
+forest_dyn(forest_df, 5, c(-50.17,-27.71))
+
+usethis::use_vignette("Forest-dynamics")
+devtools::document()
+
+usethis::use_testthat()
+devtools::test()
+devtools::test_coverage()
+devtools::check()
+
+rm(list = c("check_format"))
+tools::showNonASCIIfile("R/forest_dyn.R")
+
