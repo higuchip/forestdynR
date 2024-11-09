@@ -341,7 +341,7 @@ forest_dyn <- function(forest_df, inv_time, coord, add_wd = NULL) {
       "\n")
 
   # Biomass Section
-  cat("\nBIOMASS:\n", fill = TRUE)
+  cat("\nBIOMASSs:\n", fill = TRUE)
   cat(
     format_message("Biomass year 1", BAS1_stats$sum, "tons", 2),
     " +/- ",
