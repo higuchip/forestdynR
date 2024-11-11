@@ -13,6 +13,9 @@ install.packages("devtools")
 
 # Install forestdynR from GitHub
 devtools::install_github("https://github.com/higuchip/forestdynR.git")
+
+#NOTE: To install this package from source on Windows, you must have the [Rtools](https://cran.rstudio.com/bin/windows/Rtools/) installed.
+
 ```
 Or through CRAN, the official R repository. Run this command in R:
 

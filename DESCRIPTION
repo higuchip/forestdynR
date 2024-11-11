@@ -15,7 +15,9 @@ Depends:
     R (>= 4.3.0)
 Imports:
     BIOMASS (>= 2.1.11),
-    tcltk (>= 1.0.0)
+    tcltk (>= 1.0.0),
+    httr2 (>= 1.0.5),
+    terra
 Suggests:
     covr,
     knitr,
