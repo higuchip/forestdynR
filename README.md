@@ -95,7 +95,7 @@ An example input file is available with the function, just call `data(forest_df_
 - You can check that data set by running the command:
 
 ```R
-data(mabac_df)
+data(forest_df_example)
 ```
 				
 
