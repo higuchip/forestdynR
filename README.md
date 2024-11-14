@@ -51,7 +51,7 @@ The `forestdynR` package accepts data that must have the following arguments:
   - `species`: Species identification (scientific name);
   - `wd`: Wood density (g/cm3).
   
-  **NOTE**: The `add_wd` is NULL by default. If the argument is not provided, wood density will be estimated automatically using the `getWoodDensity` function from the `BIOMASS` package, based on the wood density database by Zanne et al., (2009). You can check the database at: "Global wood density database". Dryad. Available on <http://datadryad.org/handle/10255/dryad.235>
+  **NOTE**: The `add_wd` is NULL by default. If the argument is not provided, wood density will be estimated automatically using the `getWoodDensity` function from the `BIOMASS` package, based on the wood density database by Zanne et al., (2009).
 
 
 Example file:
@@ -248,7 +248,7 @@ Biomass year 2 = 13.80 tons  +/-  3.1
 - SALAMI, B. et al. **Influência de variáveis ambientais na dinâmica do componente arbóreo em um fragmento de Floresta Ombrófila Mista em Lages, SC**. Scientia Forestalis, v.42, n.102, p.197-207, 2014.
 - SHEIL, D.; DAVID, BURSLEM, D. F. R. P.; ALDER, D. **The interpretation and misinterpretation of mortality rate measures**. Journal of Ecology, v.83, n.2, p.331-333, 1995.
 - SHEIL, D.; JENNINGS, S.; SAVILL, P. **Long-term permanent plot observations of vegetation dynamics in Budongo, a Ugandan rain forest**. Journal of Tropical Ecology, v.16, n.6, p.865-882, 2000.
-- Zanne, A. E., et al. **Global wood density database**. Dryad. Identifier: <http://hdl.handle.net/10255/dryad235> (2009).
+- Zanne, A. E., et al. **Global wood density database**. Dryad, 2009.
 - Chave et al. (2014) **Improved allometric models to estimate the above ground biomass of tropical trees**. Global Change Biology, 20 (10), 3177-3190
 - REJOU-MECHAIN, M.; TANGUY, A.; PIPONIOT, C.; CHAVE, J.; HERAULT, B. BIOMASS: **Estimating Above ground Biomass and Its Uncertainty in Tropical Forests**. R package version 1.2. <https://CRAN.R-project.org/package=BIOMASS>
 
