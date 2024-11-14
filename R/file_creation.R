@@ -14,12 +14,11 @@
 #' @return NULL If the user does not select a folder, the function will return NULL and no files will be saved.
 #'              Otherwise, the function saves four CSV files and returns a confirmation message.
 #'
-#' @examples
-#' save_dyn_files(dynamics)
-#'
 #' @export
 #'
 #' @importFrom tcltk tk_choose.dir
+#' @importFrom utils write.csv2
+
 
 save_dyn_files <- function(dynamics) {
   folder_path <- tcltk::tk_choose.dir(default = "", caption = "Select the folder to save the files")
@@ -36,10 +35,16 @@ save_dyn_files <- function(dynamics) {
     paste0(folder_path, "/dynamics_ab_parcelas.csv")
   )
 
-  write.table(dynamics[[1]], file = file_paths[1], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
-  write.table(dynamics[[2]], file = file_paths[2], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
-  write.table(dynamics[[4]], file = file_paths[3], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
-  write.table(dynamics[[3]], file = file_paths[4], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
+  # write.table(dynamics[[1]], file = file_paths[1], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
+  # write.table(dynamics[[2]], file = file_paths[2], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
+  # write.table(dynamics[[4]], file = file_paths[3], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
+  # write.table(dynamics[[3]], file = file_paths[4], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
+
+  write.csv2(dynamics[[1]], file = file_paths[1], row.names = TRUE)
+  write.csv2(dynamics[[2]], file = file_paths[2], row.names = TRUE)
+  write.csv2(dynamics[[4]], file = file_paths[3], row.names = TRUE)
+  write.csv2(dynamics[[3]], file = file_paths[4], row.names = TRUE)
+
 
   cat("Files have been saved to:\n")
   cat(file_paths, sep = "\n")

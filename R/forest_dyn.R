@@ -294,16 +294,10 @@ forest_dyn <- function(forest_df, inv_time, coord, add_wd = NULL) {
   # Abundance Section
   cat("\nABUNDANCE:\n", fill = TRUE)
   cat(
-    format_message("Abundance year 1", n0_stats$sum, "ind", 2),
-    " +/- ",
-    round(n0_stats$sd, 2),
-    "\n"
+    format_message("Abundance year 1", n0_stats$sum, "ind", 2)
   )
   cat(
-    format_message("Abundance year 2", n1_stats$sum, "ind", 2),
-    " +/- ",
-    round(n1_stats$sd, 2),
-    "\n"
+    format_message("Abundance year 2", n1_stats$sum, "ind", 2)
   )
 
   # Dynamics Rate Section
@@ -314,22 +308,16 @@ forest_dyn <- function(forest_df, inv_time, coord, add_wd = NULL) {
       "\n")
   cat(format_message("Net Change Rate in n", n_nc_rate_total, "% year", 2),
       "\n")
-  cat(format_message("Net Turnover Rate in n", n_turn_total, "% year", 2),
+  cat(format_message("Turnover Rate in n", n_turn_total, "% year", 2),
       "\n")
 
   # Basal Area Section
   cat("\nBASAL AREA:\n", fill = TRUE)
   cat(
-    format_message("Basal Area year 1", BA_0_stats$sum, "m2", 2),
-    " +/- ",
-    round(BA_0_stats$sd, 2),
-    "\n"
+    format_message("Basal Area year 1", BA_0_stats$sum, "m2", 2)
   )
   cat(
-    format_message("Basal Area year 2", ba_1_stats$sum, "m2", 2),
-    " +/- ",
-    round(ba_1_stats$sd, 2),
-    "\n"
+    format_message("Basal Area year 2", ba_1_stats$sum, "m2", 2)
   )
   cat(format_message("Basal Area Loss Rate", ba_total_loss_rate, "% year", 2),
       "\n")
@@ -337,22 +325,16 @@ forest_dyn <- function(forest_df, inv_time, coord, add_wd = NULL) {
       "\n")
   cat(format_message("Net Change Rate in BA", ba_total_nc_rate, "% year", 2),
       "\n")
-  cat(format_message("Net Turnover Rate in BA", ba_total_turn, "% year", 2),
+  cat(format_message("Turnover Rate in BA", ba_total_turn, "% year", 2),
       "\n")
 
   # Biomass Section
   cat("\nBIOMASS:\n", fill = TRUE)
   cat(
-    format_message("Biomass year 1", BAS1_stats$sum, "tons", 2),
-    " +/- ",
-    round(BAS1_stats$sd, 2),
-    "\n"
+    format_message("Biomass year 1", BAS1_stats$sum, "tons", 2)
   )
   cat(
-    format_message("Biomass year 2", BAS2_stats$sum, "tons", 2),
-    " +/- ",
-    round(BAS2_stats$sd, 2),
-    "\n"
+    format_message("Biomass year 2", BAS2_stats$sum, "tons", 2)
   )
 
   # Saving files in your computer

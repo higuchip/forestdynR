@@ -1,7 +1,7 @@
 
 # **forestdynR**
 
-`forestdynR` is a function to calculate forest dynamics, including abundance, mortality and recruitment rates, basal area, and biomass. The function uses diameter at breast height (DBH) data to estimate forest dynamics over time.
+`forestdynR` is a package to calculate forest dynamics, including abundance, mortality and recruitment rates, basal area, and biomass. The function uses diameter at breast height (DBH) data to estimate forest dynamics over time.
 
 ### **1. INSTALLATION**
 
@@ -267,6 +267,9 @@ If you have any questions, feel free to reach out:
 
 - **Author:** Pedro Higuchi
 - **Email:** higuchip@gmail.com
+
+- **Co-author:** Ana Carolina da Silva
+- **Email:** carol_sil4@yahoo.com.br
 
 - **Co-author:** Adam Slabadack
 - **Email:** arslabadack@gmail.com

@@ -4,6 +4,7 @@ Title: Calculate Forest Dynamics
 Version: 0.0.1
 Authors@R: c(
     person("Pedro", "Higuchi", email = "higuchip@gmail.com", role = c("cre", "aut")),
+    person("Ana Carolina", "Silva", email = "carol_sil4@yahoo.com.br", role = c("aut")),
     person("Adam", "Slabadack", email = "arslabadack@gmail.com", role = c("aut")))
 Maintainer: Pedro Higuchi <higuchip@gmail.com>
 Description: 
@@ -16,8 +17,6 @@ Depends:
 Imports:
     BIOMASS (>= 2.1.11),
     tcltk (>= 1.0.0),
-    httr2 (>= 1.0.5),
-    terra
 Suggests:
     covr,
     knitr,

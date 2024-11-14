@@ -22,7 +22,3 @@ This function allows the user to save dynamic forest data to CSV files. It promp
 to select a directory via a graphical interface (using the `tcltk` package), and then saves
 several data frames containing forest dynamics information to predefined file names in that directory.
 }
-\examples{
-save_dyn_files(dynamics)
-
-}
