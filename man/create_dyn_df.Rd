@@ -20,10 +20,3 @@ A data frame with the combined data and rounded numeric values.
 Creates a dynamic data frame by combining a list of data and rounding numeric values to a specified number of digits.
 This function takes a list of data, rounds the numeric values, and combines them into a single data frame with custom column names.
 }
-\examples{
-\dontrun{
-# Example usage
-create_din_df(data_list = list(data1, data2), col_names = c("Column1", "Column2"), round_digits = 2)
-}
-
-}

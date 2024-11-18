@@ -10,6 +10,8 @@
 #'                 2) number of species (`n_species`),
 #'                 3) basal area by species (`basal_area_species`),
 #'                 4) basal area by plots (`basal_area_plot`).
+#' @param verbose Logical. If `TRUE`, the function will print messages indicating the status of the saving process.
+#'                Default is `TRUE`.
 #'
 #' @return NULL If the user does not select a folder, the function will return NULL and no files will be saved.
 #'              Otherwise, the function saves four CSV files and returns a confirmation message.
@@ -19,12 +21,11 @@
 #' @importFrom tcltk tk_choose.dir
 #' @importFrom utils write.csv2
 
-
-save_dyn_files <- function(dynamics) {
+save_dyn_files <- function(dynamics, verbose = TRUE) {
   folder_path <- tcltk::tk_choose.dir(default = "", caption = "Select the folder to save the files")
 
   if (is.na(folder_path) || folder_path == "") {
-    cat("No folder selected. The files will not be saved.\n")
+    message("No folder selected. The files will not be saved.")
     return(NULL)
   }
 
@@ -35,17 +36,15 @@ save_dyn_files <- function(dynamics) {
     paste0(folder_path, "/dynamics_ab_parcelas.csv")
   )
 
-  # write.table(dynamics[[1]], file = file_paths[1], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
-  # write.table(dynamics[[2]], file = file_paths[2], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
-  # write.table(dynamics[[4]], file = file_paths[3], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
-  # write.table(dynamics[[3]], file = file_paths[4], row.names = TRUE, dec = ",", sep = ";", quote = FALSE)
-
   write.csv2(dynamics[[1]], file = file_paths[1], row.names = TRUE)
   write.csv2(dynamics[[2]], file = file_paths[2], row.names = TRUE)
   write.csv2(dynamics[[4]], file = file_paths[3], row.names = TRUE)
   write.csv2(dynamics[[3]], file = file_paths[4], row.names = TRUE)
 
-
-  cat("Files have been saved to:\n")
-  cat(file_paths, sep = "\n")
+  if (verbose) {
+    message("Files have been saved to:")
+    message(paste(file_paths, collapse = "\n"))
+  }
 }
+
+

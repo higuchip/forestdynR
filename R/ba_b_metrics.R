@@ -24,9 +24,6 @@
 #' \item{biomass_n0}{Total above-ground biomass at time 0 by group.}
 #' \item{biomass_n1}{Total above-ground biomass at time 1 by group.}
 #'
-#'#' @examples
-#' ba_b_metrics(forest_df = your_data, group_var = "plot", inv_time = 5)
-#'
 #'
 #' @export
 #'

@@ -5,7 +5,7 @@
 #' basal area, and biomass. The function uses diameter at breast height (DBH) data to estimate forest dynamics over time.
 #'
 #' @param forest_df A dataframe containing the forest plot data, with columns for species name (spp),
-#'                  and two DBH values (DBH_1 and DBH_2).
+#'                  and two DBH (Diameter at breast height) values (DBH_1 and DBH_2).
 #' @param inv_time The number of years between the two forest measurements (time interval between observations).
 #' @param coord A vector of geographic coordinates (longitude and latitude) for biomass calculation.
 #' @param add_wd Additional wood density data that can be provided for species not included in the database.
@@ -16,12 +16,13 @@
 #' @examples
 #' forest_df <- data(forest_df_example)
 #' coord <- c(-50.17,-27.71)
-#' forest_dyn(forest_df, inv_time = 5, coord = coord)
+#' dyn_object <- forest_dyn(forest_df, inv_time = 5, coord = coord)
 #'
 #' @export
 #'
 #' @importFrom BIOMASS getWoodDensity computeAGB
 #' @importFrom utils write.table
+
 
 
 forest_dyn <- function(forest_df, inv_time, coord, add_wd = NULL) {
@@ -271,73 +272,89 @@ forest_dyn <- function(forest_df, inv_time, coord, add_wd = NULL) {
   ba_total_nc_rate <- ((ba1_dyn_total[7] / ba1_dyn_total[1]) ^ (1 / inv_time) - 1) * 100
   ba_total_turn <- (ba_total_loss_rate + ba_total_gain_rate) / 2
 
-
-  print(dynamics)
-
-  # Format and print
-  format_message <- function(label,
-                             value,
-                             unit = "",
-                             precision = 2) {
+  format_message <- function(label, value, unit = "", precision = 2) {
     sprintf("%s = %.2f %s", label, round(value, precision), unit)
   }
 
-  # Report Title
-  cat("***************  TOTAL COMMUNITY DYNAMICS  ***************\n",
-      fill = TRUE)
-
-  # Richness Section
-  cat("\nRICHNESS:\n", fill = TRUE)
-  cat(format_message("Richness year 1", s_year_1, "species"), "\n")
-  cat(format_message("Richness year 2", s_year_2, "species"), "\n")
-
-  # Abundance Section
-  cat("\nABUNDANCE:\n", fill = TRUE)
-  cat(
-    format_message("Abundance year 1", n0_stats$sum, "ind", 2)
-  )
-  cat(
-    format_message("Abundance year 2", n1_stats$sum, "ind", 2)
-  )
-
-  # Dynamics Rate Section
-  cat("\nDYNAMIC RATES:\n", fill = TRUE)
-  cat(format_message("Mortality Rate", n_death_rate_total, "% year", 2),
-      "\n")
-  cat(format_message("Recruitment Rate", n_rec_rate_total, "% year", 2),
-      "\n")
-  cat(format_message("Net Change Rate in n", n_nc_rate_total, "% year", 2),
-      "\n")
-  cat(format_message("Turnover Rate in n", n_turn_total, "% year", 2),
-      "\n")
-
-  # Basal Area Section
-  cat("\nBASAL AREA:\n", fill = TRUE)
-  cat(
-    format_message("Basal Area year 1", BA_0_stats$sum, "m2", 2)
-  )
-  cat(
-    format_message("Basal Area year 2", ba_1_stats$sum, "m2", 2)
-  )
-  cat(format_message("Basal Area Loss Rate", ba_total_loss_rate, "% year", 2),
-      "\n")
-  cat(format_message("Basal Area Gain Rate", ba_total_gain_rate, "% year", 2),
-      "\n")
-  cat(format_message("Net Change Rate in BA", ba_total_nc_rate, "% year", 2),
-      "\n")
-  cat(format_message("Turnover Rate in BA", ba_total_turn, "% year", 2),
-      "\n")
-
-  # Biomass Section
-  cat("\nBIOMASS:\n", fill = TRUE)
-  cat(
-    format_message("Biomass year 1", BAS1_stats$sum, "tons", 2)
-  )
-  cat(
-    format_message("Biomass year 2", BAS2_stats$sum, "tons", 2)
+  # Criar o data frame com as seções e métricas
+  report_df <- data.frame(
+    Section = c(
+      "Richness",
+      "Richness",
+      "Abundance",
+      "Abundance",
+      "Dynamics Rate",
+      "Dynamics Rate",
+      "Dynamics Rate",
+      "Dynamics Rate",
+      "Basal Area",
+      "Basal Area",
+      "Basal Area",
+      "Basal Area",
+      "Basal Area",
+      "Basal Area",
+      "Biomass",
+      "Biomass"
+    ),
+    Metric = c(
+      "Richness year 1",
+      "Richness year 2",
+      "Abundance year 1",
+      "Abundance year 2",
+      "Mortality Rate",
+      "Recruitment Rate",
+      "Net Change Rate in n",
+      "Turnover Rate in n",
+      "Basal Area year 1",
+      "Basal Area year 2",
+      "Basal Area Loss Rate",
+      "Basal Area Gain Rate",
+      "Net Change Rate in BA",
+      "Turnover Rate in BA",
+      "Biomass year 1",
+      "Biomass year 2"
+    ),
+    Value = c(
+      s_year_1,
+      s_year_2,
+      n0_stats$sum,
+      n1_stats$sum,
+      n_death_rate_total,
+      n_rec_rate_total,
+      n_nc_rate_total,
+      n_turn_total,
+      BA_0_stats$sum,
+      ba_1_stats$sum,
+      ba_total_loss_rate,
+      ba_total_gain_rate,
+      ba_total_nc_rate,
+      ba_total_turn,
+      BAS1_stats$sum,
+      BAS2_stats$sum
+    ),
+    Unit = c(
+      "species",
+      "species",
+      "ind",
+      "ind",
+      "% year",
+      "% year",
+      "% year",
+      "% year",
+      "m2",
+      "m2",
+      "% year",
+      "% year",
+      "% year",
+      "% year",
+      "tons",
+      "tons"
+    ),
+    stringsAsFactors = FALSE
   )
 
   # Saving files in your computer
   save_dyn_files(dynamics)
 
+  return(list(dynamics = dynamics, report_df = report_df))
 }

@@ -9,10 +9,10 @@ You can install the package directly from GitHub using the `devtools`. Run the f
 
 ```R
 # Install devtools if you haven't already
-install.packages("devtools")
+install.packages('devtools')
 
 # Install forestdynR from GitHub
-devtools::install_github("https://github.com/higuchip/forestdynR.git")
+devtools::install_github('https://github.com/higuchip/forestdynR.git')
 
 #NOTE: To install this package from source on Windows, you must have the [Rtools](https://cran.rstudio.com/bin/windows/Rtools/) installed.
 
@@ -20,7 +20,7 @@ devtools::install_github("https://github.com/higuchip/forestdynR.git")
 Or through CRAN, the official R repository. Run this command in R:
 
 ```R
-install.packages("forestdynR")
+install.packages('forestdynR')
 ```
 
 ### **2. USAGE**
@@ -51,7 +51,7 @@ The `forestdynR` package accepts data that must have the following arguments:
   - `species`: Species identification (scientific name);
   - `wd`: Wood density (g/cm3).
   
-  **NOTE**: The `add_wd` is NULL by default. If the argument is not provided, wood density will be estimated automatically using the `getWoodDensity` function from the `BIOMASS` package, based on the wood density database by Zanne et al., (2009).
+  **NOTE**: The `add_wd` is NULL by default. If the argument is not provided, wood density will be estimated automatically using the `getWoodDensity()` function from the `BIOMASS` package, based on the wood density database by Zanne et al., (2009).
 
 
 Example file:
@@ -107,7 +107,7 @@ data(forest_df_example)
 library(forestdynR) # Load package
 data(forest_df_example) # Load your dataset
 
-forest_dyn(forest_df_example, 5, c(-50.17,-27.71)) # Run the function
+dyn_object <- forest_dyn(forest_df_example, 5, c(-50.17,-27.71)) # Run the function
 ```
 
 #### 2.3 RETURN
@@ -124,7 +124,7 @@ The reference dataset contains 16467 wood density values
 Your taxonomic table contains 25 taxa
 ```
 ```
-$n_plot
+dyn_object$dynamics$n_plot
 ```
 
 |  |n0 |survivor |death |recruitment |n1| death_rate| recruitment_rate| net_change_rate| turn|
@@ -133,7 +133,7 @@ $n_plot
 | 2| 35|       34|     1|           1|35|       0.58|             0.58|            0.00| 0.58|
 
 ```
-$n_species
+dyn_object$dynamics$n_species
 ```
 
 |                                                           |n0   |survivor |death |recruitment |n1   |death_rate |recruitment_rate |net_change_rate |turn |
@@ -165,7 +165,7 @@ $n_species
 |Zanthoxylum kleinii (R.S.Cowan) P.G.Waterman               |2    |2        |0     |0           |2    |0.00       |0.00             |0.00            |0.00 |
 
 ```
-$basal_area_plot
+dyn_object$dynamics$basal_area_plot
 ```
 
 |   |BA_0   |AGB_0   |sur_gain |sur_loss  |BA_m  |BA_r  |BA_1   |AGB_1   |BA_loss_rate |BA_gain_rate |BA_net_change_rate |BA_turn |
@@ -174,7 +174,7 @@ $basal_area_plot
 |2  |1.1205 |7.7123  |0.1658   | -0.0038  |0     |0     |1.2815 |9.0881  |0.0674       |2.7336       |2.7223             |1.4005  |
 
 ```
-$basal_area_species
+dyn_object$dynamics$basal_area_species
 ```
 |                                                           |BA_0   |AGB_0    |sur_gain |sur_loss  |BA_m |BA_r  |BA_1   |AGB_1   |BA_loss_rate |BA_gain_rate |BA_net_change_rate |BA_turn |
 |-----------------------------------------------------------|-------|---------|---------|----------|-----|------|-------|--------|-------------|-------------|-------------------|--------|
@@ -206,39 +206,26 @@ $basal_area_species
 
 
 
-***************  TOTAL COMMUNITY DYNAMICS  ***************
+`dyn_object$report_df`
 
-
-**RICHNESS:**
-
-Richness year 1 = 25.00 species 
-Richness year 2 = 25.00 species 
-
-**ABUNDANCE:**
-
-Abundance year 1 = 81.00 ind  +/-  7.78 
-Abundance year 2 = 80.00 ind  +/-  7.07 
-
-**DYNAMIC RATES:**
-
-Mortality Rate = 1.27 % year⁻¹ 
-Recruitment Rate = 1.02 % year⁻¹ 
-Net Change Rate in n = -0.25 % year⁻¹ 
-Net Turnover Rate in n = 1.14 % year⁻¹ 
-
-**BASAL AREA:**
-
-Basal Area year 1 = 1.85 m²  +/-  0.27 
-Basal Area year 2 = 2.06 m²  +/-  0.35 
-Basal Area Loss Rate = 0.26 % year⁻¹ 
-Basal Area Gain Rate = 2.47 % year⁻¹ 
-Net Change Rate in BA = 2.14 % year⁻¹ 
-Net Turnover Rate in BA = 1.36 % year⁻¹ 
-
-**BIOMASS:**
-
-Biomass year 1 = 12.05 tons  +/-  2.39 
-Biomass year 2 = 13.80 tons  +/-  3.1 
+|       |Section        |Metric                |Value       |Unit    | 
+|-------|---------------|----------------------|------------|--------|
+|1      |Richness       |Richness year 1       |25.0000000  |species |
+|2      |Richness       |Richness year 2       |25.0000000  |species |
+|3      |Abundance      |Abundance year 1      |81.0000000  |ind     |
+|4      |Abundance      |Abundance year 2      |80.0000000  |ind     |
+|5      |Dynamics Rate  |Mortality Rate        |1.2662313   |% year  |
+|6      |Dynamics Rate  |Recruitment Rate      |1.0206218   |% year  |
+|7      |Dynamics Rate  |Net Change Rate in n  | -0.2481420 |% year  |
+|8      |Dynamics Rate  |Turnover Rate in n    |1.1434265   |% year  |
+|9      |Basal Area     |Basal Area year 1     |1.8547000   |m2      |
+|10     |Basal Area     |Basal Area year 2     |2.0617000   |m2      |
+|11     |Basal Area     |Basal Area Loss Rate  |0.2579729   |% year  |
+|12     |Basal Area     |Basal Area Gain Rate  |2.4673349   |% year  |
+|13     |Basal Area     |Net Change Rate in BA |2.1387080   |% year  |
+|14     |Basal Area     |Turnover Rate in BA   |1.3626539   |% year  |
+|15     |Biomass        |Biomass year 1        |12.0480000  |tons    |
+|16     |Biomass        |Biomass year 2        |13.7982000  |tons    |
 
 
 ### **3. REFERENCES**

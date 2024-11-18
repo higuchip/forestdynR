@@ -8,7 +8,7 @@ forest_dyn(forest_df, inv_time, coord, add_wd = NULL)
 }
 \arguments{
 \item{forest_df}{A dataframe containing the forest plot data, with columns for species name (spp),
-and two DBH values (DBH_1 and DBH_2).}
+and two DBH (Diameter at breast height) values (DBH_1 and DBH_2).}
 
 \item{inv_time}{The number of years between the two forest measurements (time interval between observations).}
 
@@ -27,6 +27,6 @@ basal area, and biomass. The function uses diameter at breast height (DBH) data 
 \examples{
 forest_df <- data(forest_df_example)
 coord <- c(-50.17,-27.71)
-forest_dyn(forest_df, inv_time = 5, coord = coord)
+dyn_object <- forest_dyn(forest_df, inv_time = 5, coord = coord)
 
 }

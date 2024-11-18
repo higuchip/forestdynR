@@ -16,13 +16,7 @@
 #'   - rec_rate: Annual recruitment rate per group (%).
 #'   - nc_rate: Net change rate of tree count per group (%).
 #'   - turn: Turnover rate, calculated as the mean of death and recruitment rates (%).
-
 #'
-#' @examples
-#' \dontrun{
-#' # Example usage
-#' sdrn_metrics(forest_df = your_data, group_var = "plot", inv_time = 5)
-#' }
 #'
 #' @export
 

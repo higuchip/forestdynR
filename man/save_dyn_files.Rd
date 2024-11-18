@@ -4,7 +4,7 @@
 \alias{save_dyn_files}
 \title{save_dyn_files}
 \usage{
-save_dyn_files(dynamics)
+save_dyn_files(dynamics, verbose = TRUE)
 }
 \arguments{
 \item{dynamics}{A list containing four data frames with different forest dynamics data:
@@ -12,6 +12,9 @@ save_dyn_files(dynamics)
 2) number of species (`n_species`),
 3) basal area by species (`basal_area_species`),
 4) basal area by plots (`basal_area_plot`).}
+
+\item{verbose}{Logical. If `TRUE`, the function will print messages indicating the status of the saving process.
+Default is `TRUE`.}
 }
 \value{
 NULL If the user does not select a folder, the function will return NULL and no files will be saved.

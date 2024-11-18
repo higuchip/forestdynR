@@ -9,11 +9,6 @@
 #'
 #' @return A data frame with the combined data and rounded numeric values.
 #'
-#' @examples
-#' \dontrun{
-#' # Example usage
-#' create_din_df(data_list = list(data1, data2), col_names = c("Column1", "Column2"), round_digits = 2)
-#' }
 #'
 #' @export
 

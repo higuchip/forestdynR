@@ -28,10 +28,3 @@ A list containing the following metrics:
 \description{
 Calculates survival, death, and recruitment metrics for forest monitoring data over time.
 }
-\examples{
-\dontrun{
-# Example usage
-sdrn_metrics(forest_df = your_data, group_var = "plot", inv_time = 5)
-}
-
-}
